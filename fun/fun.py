@@ -143,16 +143,16 @@ class Fun(Cog):
         else:
             await ctx.send(
                 (f"{bot_choice} We're square {author.mention}!")
-        @commands.command(name="8", aliases=["8ball"])
-    async def _8ball(self, ctx, *, question: str):
-        """Ask 8 ball a question.
+    @commands.command(name="8", aliases=["8ball"])
+        async def _8ball(self, ctx, *, question: str):
+            """Ask 8 ball a question.
 
-        Question must end with a question mark.
-        """
-        if question.endswith("?") and question != "?":
-            await ctx.send((choice(self.ball)))
-        else:
-            await ctx.send("That doesn't look like a question.")
+            Question must end with a question mark.
+            """
+            if question.endswith("?") and question != "?":
+                await ctx.send((choice(self.ball)))
+            else:
+                await ctx.send("That doesn't look like a question.")
 
     @commands.command(aliases=["badjoke"])
     async def dadjoke(self,ctx):
