@@ -155,8 +155,8 @@ class Fun(Cog):
 
     @commands.command(aliases=["badjoke"])
     async def dadjoke(self,ctx):
-        joke = Dadjoke()
-        await ctx.send(joke)
+        x = Dadjoke()
+        await ctx.send(x.joke)
         
     @commands.command()
     async def google(self, ctx, *, search_terms: str):
