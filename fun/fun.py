@@ -113,8 +113,8 @@ class Fun(Cog):
     @commands.command()
     async def flip(self,ctx):
         """Flip a coin"""
-        choice = choice["HEADS!*","TAILS!*"]
-        await ctx.send(f"*Flips a coin and...{choice}")
+        answer = choice["HEADS!*","TAILS!*"]
+        await ctx.send(f"*Flips a coin and...{answer}")
         
     @commands.command()
     async def rps(self,ctx,your_choice:RPSParser):
