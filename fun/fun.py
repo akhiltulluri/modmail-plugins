@@ -81,7 +81,7 @@ class Fun(Cog):
     def __init__(self,bot):
         super().__init__()
         self.bot = bot
-        self.db = bot.plugin_db.get_partition(self)
+        #self.db = bot.plugin_db.get_partition(self)
         
     @commands.command()
     @checks.has_permissions(PermissionLevel.REGULAR)
