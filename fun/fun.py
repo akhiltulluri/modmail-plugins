@@ -83,6 +83,7 @@ class Fun(Cog):
         self.db = bot.plugin_db.get_partition(self)
         
     @commands.command()
+    @checks.has_permissions(PermissionLevel.REGULAR)
     async def choose(self, ctx, *choices):
         """Choose between multiple options.
 
@@ -96,6 +97,7 @@ class Fun(Cog):
             await ctx.send(choice(choices))
             
     @commands.command()
+    @checks.has_permissions(PermissionLevel.REGULAR)
     async def roll(self, ctx, number: int = 100):
         """Roll a random number.
 
@@ -111,12 +113,14 @@ class Fun(Cog):
             await ctx.send(_("{author.mention} Maybe higher than 1? ;P").format(author=author))
             
     @commands.command()
+    @checks.has_permissions(PermissionLevel.REGULAR)
     async def flip(self,ctx):
         """Flip a coin"""
         answer = choice(["HEADS!*","TAILS!*"])
         await ctx.send(f"*Flips a coin and...{answer}")
         
     @commands.command()
+    @checks.has_permissions(PermissionLevel.REGULAR)
     async def rps(self,ctx,your_choice:RPSParser):
         """Play Rock,Paper,Scissors"""
         author = ctx.author
@@ -142,7 +146,8 @@ class Fun(Cog):
             await ctx.send(f"{bot_choice.value} You lose {author.mention}!")
         else:
             await ctx.send(f"{bot_choice.value} We're square {author.mention}!")
-    @commands.command(name="8ball")
+    @commands.command(name="8ball",aliases=["8"])
+    @checks.has_permissions(PermissionLevel.REGULAR)
     async def _8ball(self, ctx, *, question: str):
         """Ask 8 ball a question.
 
@@ -154,11 +159,14 @@ class Fun(Cog):
             await ctx.send("That doesn't look like a question.")
 
     @commands.command(aliases=["badjoke"])
+    @checks.has_permissions(PermissionLevel.REGULAR)
     async def dadjoke(self,ctx):
+        """Gives a random Dadjoke"""
         x = Dadjoke()
         await ctx.send(x.joke)
         
     @commands.command()
+    @checks.has_permissions(PermissionLevel.REGULAR)
     async def google(self, ctx, *, search_terms: str):
         """Create a lmgtfy link."""
         search_terms = escape(
