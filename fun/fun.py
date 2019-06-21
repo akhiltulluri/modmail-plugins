@@ -168,7 +168,7 @@ class Fun(Cog):
         
     @commands.command()
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def google(self, ctx, *, search_terms: str):
+    async def lmgtfy(self, ctx, *, search_terms: str):
         """Create a lmgtfy link."""
         search_terms = escape(
             search_terms.replace("+", "%2B").replace(" ", "+"), mass_mentions=True
