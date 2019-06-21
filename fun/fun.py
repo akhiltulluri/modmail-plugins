@@ -54,6 +54,7 @@ class RPSParser:
         else:
             self.choice = None
 class Fun(Cog):
+    """Some Fun commands"""
   
     ball = [
         "As I see it, yes",
