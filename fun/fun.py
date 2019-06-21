@@ -99,12 +99,12 @@ class Fun(Cog):
             
     @commands.command()
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def roll(self, ctx, number: int = 100):
+    async def roll(self, ctx, number: int = 6):
         """Roll a random number.
 
         The result will be between 1 and `<number>`.
 
-        `<number>` defaults to 100.
+        `<number>` defaults to 6.
         """
         author = ctx.author
         if number > 1:
@@ -173,7 +173,7 @@ class Fun(Cog):
         search_terms = escape(
             search_terms.replace("+", "%2B").replace(" ", "+"), mass_mentions=True
         )
-        await ctx.send("https://lmgtfy.com/?q={}".format(search_terms))
+        await ctx.send("<https://lmgtfy.com/?q={}>".format(search_terms))
 
 def setup(bot):
     bot.add_cog(Fun(bot))    
