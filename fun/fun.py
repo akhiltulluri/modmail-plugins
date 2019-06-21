@@ -113,7 +113,7 @@ class Fun(Cog):
     @commands.command()
     async def flip(self,ctx):
         """Flip a coin"""
-        answer = choice["HEADS!*","TAILS!*"]
+        answer = choice(["HEADS!*","TAILS!*"])
         await ctx.send(f"*Flips a coin and...{answer}")
         
     @commands.command()
