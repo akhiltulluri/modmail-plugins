@@ -135,13 +135,13 @@ class Fun(Cog):
         if bot_choice == player_choice:
             outcome = None  # Tie
         else:
-            outcome = cond[(player_choice, red_choice)]
+            outcome = cond[(player_choice, bot_choice)]
         if outcome is True:
-            await ctx.send(f"{bot_choice} You win {author.mention}!")
+            await ctx.send(f"{bot_choice.value} You win {author.mention}!")
         elif outcome is False:
-            await ctx.send(f"{bot_choice} You lose {author.mention}!")
+            await ctx.send(f"{bot_choice.value} You lose {author.mention}!")
         else:
-            await ctx.send(f"{bot_choice} We're square {author.mention}!")
+            await ctx.send(f"{bot_choice.value} We're square {author.mention}!")
     @commands.command(name="8ball")
     async def _8ball(self, ctx, *, question: str):
         """Ask 8 ball a question.
