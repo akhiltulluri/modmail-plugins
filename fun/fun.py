@@ -167,6 +167,10 @@ class Fun(Cog):
             search_terms.replace("+", "%2B").replace(" ", "+"), mass_mentions=True
         )
         await ctx.send("<https://lmgtfy.com/?q={}>".format(search_terms))
+        
+    @commands.command()
+    async def say(self,ctx,* ,message):
+        await ctx.send(message)
 
 def setup(bot):
     bot.add_cog(Fun(bot))    
