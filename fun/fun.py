@@ -170,7 +170,8 @@ class Fun(Cog):
         
     @commands.command()
     async def say(self,ctx,* ,message):
-        await ctx.send(message)
+        msg = escape(message,mass_mentions=True)
+        await ctx.send(msg)
 
 def setup(bot):
     bot.add_cog(Fun(bot))    
