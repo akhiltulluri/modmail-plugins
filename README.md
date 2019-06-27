@@ -1,4 +1,4 @@
 <div align="center">
-  <img src="https://imgur.com/gallery/x0x6xCJ">
-  <p><strong><i>Some plugins made for Modmail Bot</i></strong></p>
+  <img src="https://i.imgur.com/XyGXFPk.png">
+  <p><strong><i>Plugins that extend the functionality of discord Modmail</i></strong></p>
 </div>
