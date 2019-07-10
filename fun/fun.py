@@ -186,7 +186,7 @@ class Fun(Cog):
         r = await self.bot.session.get("https://www.reddit.com/r/dankmemes/top.json?sort=top&t=day&limit=500")
         r = await r.json()
         r = box.Box(r)
-        data = random.choice(r.data.children).data
+        data = choice(r.data.children).data
         img = data.url
         title = data.title
         upvotes = data.ups
