@@ -200,19 +200,19 @@ class Fun(Cog):
     
         @commands.command()
         async def emojify(self, ctx, *, text: str):
-        """Turns your text into emojis!"""
-        try:
-            await ctx.message.delete()
-        except discord.Forbidden:
-            pass
-        to_send = ""
-        for char in text:
-            if char == " ":
-                to_send += " "
-            elif char.lower() in 'qwertyuiopasdfghjklzxcvbnm':
-                to_send += f":regional_indicator_{char.lower()}:  "
-            elif char in '1234567890':
-                numbers = {
+            """Turns your text into emojis!"""
+            try:
+                await ctx.message.delete()
+            except discord.Forbidden:
+                pass
+            to_send = ""
+            for char in text:
+                if char == " ":
+                    to_send += " "
+                elif char.lower() in 'qwertyuiopasdfghjklzxcvbnm':
+                    to_send += f":regional_indicator_{char.lower()}:  "
+                elif char in '1234567890':
+                    numbers = {
                     "1": "one",
                     "2": "two",
                     "3": "three",
@@ -224,12 +224,12 @@ class Fun(Cog):
                     "9": "nine",
                     "0": "zero"
                 }
-                to_send += f":{numbers[char]}: "
-            else:
-                return await ctx.send("Characters must be either a letter or number. Anything else is unsupported.")
-        if len(to_send) > 2000:
-            return await ctx.send("Emoji is too large to fit in a message!")
-        await ctx.send(to_send)
+                    to_send += f":{numbers[char]}: "
+                else:
+                    return await ctx.send("Characters must be either a letter or number. Anything else is unsupported.")
+            if len(to_send) > 2000:
+                return await ctx.send("Emoji is too large to fit in a message!")
+            await ctx.send(to_send)
 def setup(bot):
     bot.add_cog(Fun(bot))    
 
