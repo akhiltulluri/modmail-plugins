@@ -176,7 +176,7 @@ class Fun(Cog):
     @commands.command()
     async def reverse(self, ctx, *, text):
         """!txeT ruoY esreveR"""
-        text =  escape("".join(list(reversed(str(text),mass_mentions=True))))
+        text =  escape("".join(list(reversed(str(text)))),mass_mentions=True)
         await ctx.send(text)
 def setup(bot):
     bot.add_cog(Fun(bot))    
