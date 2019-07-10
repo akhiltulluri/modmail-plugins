@@ -197,16 +197,39 @@ class Fun(Cog):
         em.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
         em.set_footer(text=f"👍{upvotes} | 👎 {downvotes}")
         await ctx.send(embed=em)
-    @commands.command()
-    async def asktrump(self, ctx, *, question):
-        """Ask Trump your own question."""
-        resp = await self.bot.session.get(f"https:\/\/api.whatdoestrumpthink.com\/api\/v1\/quotes\/personalized?q={question}")
-        resp = await resp.json()
-        em = discord.Embed(color=ctx.author.color, title="What did Trump say?")
-        em.description = f"**You:** {question}\n\n**Trump:** {resp['message']}"
-        em.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
-        em.set_footer(text="Powered by whatdoestrumpthink.com", icon_url="https://d.ibtimes.co.uk/en/full/1571929/donald-trump.jpg")
-        await ctx.send(embed=em)
+    
+        @commands.command()
+    async def emojify(self, ctx, *, text: str):
+        """Turns your text into emojis!"""
+        try:
+            await ctx.message.delete()
+        except discord.Forbidden:
+            pass
+        to_send = ""
+        for char in text:
+            if char == " ":
+                to_send += " "
+            elif char.lower() in 'qwertyuiopasdfghjklzxcvbnm':
+                to_send += f":regional_indicator_{char.lower()}:  "
+            elif char in '1234567890':
+                numbers = {
+                    "1": "one",
+                    "2": "two",
+                    "3": "three",
+                    "4": "four",
+                    "5": "five",
+                    "6": "six",
+                    "7": "seven",
+                    "8": "eight",
+                    "9": "nine",
+                    "0": "zero"
+                }
+                to_send += f":{numbers[char]}: "
+            else:
+                return await ctx.send("Characters must be either a letter or number. Anything else is unsupported.")
+        if len(to_send) > 2000:
+            return await ctx.send("Emoji is too large to fit in a message!")
+        await ctx.send(to_send)
 def setup(bot):
     bot.add_cog(Fun(bot))    
 
