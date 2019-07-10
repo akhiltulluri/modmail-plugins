@@ -199,7 +199,7 @@ class Fun(Cog):
         await ctx.send(embed=em)
     @commands.command()
     async def emojify(self, ctx, *, text: str):
-            """Turns your text into emojis!"""
+        """Turns your text into emojis!"""
         try:
             await ctx.message.delete()
         except discord.Forbidden:
