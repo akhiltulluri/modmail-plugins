@@ -200,7 +200,7 @@ class Fun(Cog):
     @commands.command()
     async def asktrump(self, ctx, *, question):
         """Ask Trump your own question."""
-        resp = await self.bot.session.get(f"https://api.whatdoestrumpthink.com/api/v1/quotes/personalized?q={question}")
+        resp = await self.bot.session.get(f"https:\/\/api.whatdoestrumpthink.com\/api\/v1\/quotes\/personalized?q={question}")
         resp = await resp.json()
         em = discord.Embed(color=ctx.author.color, title="What did Trump say?")
         em.description = f"**You:** {question}\n\n**Trump:** {resp['message']}"
