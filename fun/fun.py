@@ -6,6 +6,7 @@ from discord.ext import commands
 from dadjokes import Dadjoke
 from core import checks
 import box
+import json
 from core.models import PermissionLevel
 
 Cog = getattr(commands, "Cog", object)
@@ -195,6 +196,16 @@ class Fun(Cog):
         em.set_image(url=img)
         em.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
         em.set_footer(text=f"👍{upvotes} | 👎 {downvotes}")
+        await ctx.send(embed=em)
+    @commands.command()
+    async def asktrump(self, ctx, *, question):
+        """Ask Trump your own question."""
+        resp = await self.bot.session.get(f"https://api.whatdoestrumpthink.com/api/v1/quotes/personalized?q={question}")
+        resp = await resp.json()
+        em = discord.Embed(color=ctx.author.color, title="What did Trump say?")
+        em.description = f"**You:** {question}\n\n**Trump:** {resp['message']}"
+        em.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+        em.set_footer(text="Powered by whatdoestrumpthink.com", icon_url="https://d.ibtimes.co.uk/en/full/1571929/donald-trump.jpg")
         await ctx.send(embed=em)
 def setup(bot):
     bot.add_cog(Fun(bot))    
