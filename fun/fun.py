@@ -232,7 +232,7 @@ class Fun(Cog):
         
     @commands.command()
     @commands.guild_only()
-    async def roast(self, ctx, user: discord.Member = None):
+    async def roast(self, ctx,*, user: discord.Member = None):
         '''Roast someone! If you suck at roasting them yourself.'''
    
         msg = f"Hey, {user.mention}! " if user is not None else ""
