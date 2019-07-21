@@ -5,6 +5,9 @@ import discord
 from discord.ext import commands
 from dadjokes import Dadjoke
 from core import checks
+import box
+import json
+import string
 from core.models import PermissionLevel
 
 Cog = getattr(commands, "Cog", object)
@@ -167,7 +170,94 @@ class Fun(Cog):
             search_terms.replace("+", "%2B").replace(" ", "+"), mass_mentions=True
         )
         await ctx.send("<https://lmgtfy.com/?q={}>".format(search_terms))
+        
+    @commands.command()
+    async def say(self,ctx,* ,message):
+        """Make the bot say something"""
+        msg = escape(message,mass_mentions=True)
+        await ctx.send(msg)
+    @commands.command()
+    async def reverse(self, ctx, *, text):
+        """!txeT ruoY esreveR"""
+        text =  escape("".join(list(reversed(str(text)))),mass_mentions=True)
+        await ctx.send(text)
+        
+    @commands.command()
+    async def meme(self, ctx):
+        """Get a random meme. The stuff of life."""
+        r = await self.bot.session.get("https://www.reddit.com/r/dankmemes/top.json?sort=top&t=day&limit=500")
+        r = await r.json()
+        r = box.Box(r)
+        data = choice(r.data.children).data
+        img = data.url
+        title = data.title
+        upvotes = data.ups
+        downvotes = data.downs
+        em = discord.Embed(color=ctx.author.color, title=title)
+        em.set_image(url=img)
+        em.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+        em.set_footer(text=f"👍{upvotes} | 👎 {downvotes}")
+        await ctx.send(embed=em)
+    @commands.command()
+    async def emojify(self, ctx, *, text: str):
+        """Turns your text into emojis!"""
+        try:
+            await ctx.message.delete()
+        except discord.Forbidden:
+            pass
+        to_send = ""
+        for char in text:
+            if char == " ":
+                to_send += " "
+            elif char.lower() in 'qwertyuiopasdfghjklzxcvbnm':
+                to_send += f":regional_indicator_{char.lower()}:  "
+            elif char in '1234567890':
+                numbers = {
+                    "1": "one",
+                    "2": "two",
+                    "3": "three",
+                    "4": "four",
+                    "5": "five",
+                    "6": "six",
+                    "7": "seven",
+                    "8": "eight",
+                    "9": "nine",
+                    "0": "zero"
+                }
+                to_send += f":{numbers[char]}: "
+            else:
+                return await ctx.send("Characters must be either a letter or number. Anything else is unsupported.")
+        if len(to_send) > 2000:
+            return await ctx.send("Emoji is too large to fit in a message!")
+        await ctx.send(to_send)
+        
+    @commands.command()
+    @commands.guild_only()
+    async def roast(self, ctx,*, user: discord.Member = None):
+        '''Roast someone! If you suck at roasting them yourself.'''
+   
+        msg = f"Hey, {user.mention}! " if user is not None else ""
+        roasts = ["I'd give you a nasty look but you've already got one.", "If you're going to be two-faced, at least make one of them pretty.", "The only way you'll ever get laid is if you crawl up a chicken's ass and wait.", "It looks like your face caught fire and someone tried to put it out with a hammer.", "I'd like to see things from your point of view, but I can't seem to get my head that far up your ass.", "Scientists say the universe is made up of neutrons, protons and electrons. They forgot to mention morons.", "Why is it acceptable for you to be an idiot but not for me to point it out?", "Just because you have one doesn't mean you need to act like one.", "Someday you'll go far... and I hope you stay there.", "Which sexual position produces the ugliest children? Ask your mother.", "No, those pants don't make you look fatter - how could they?", "Save your breath - you'll need it to blow up your date.", "If you really want to know about mistakes, you should ask your parents.", "Whatever kind of look you were going for, you missed.", "Hey, you have something on your chin... no, the 3rd one down.", "I don't know what makes you so stupid, but it really works.", "You are proof that evolution can go in reverse.", "Brains aren't everything. In your case they're nothing.", "I thought of you today. It reminded me to take the garbage out.", "You're so ugly when you look in the mirror, your reflection looks away.", "Quick - check your face! I just found your nose in my business.", "It's better to let someone think you're stupid than open your mouth and prove it.", "You're such a beautiful, intelligent, wonderful person. Oh I'm sorry, I thought we were having a lying competition.", "I'd slap you but I don't want to make your face look any better.", "You have the right to remain silent because whatever you say will probably be stupid anyway."]
+        if str(user.id) == str(ctx.bot.user.id):
+            return await ctx.send(f"Uh?!! Nice try! I am not going to roast myself. Instead I am going to roast you now.\n\n {ctx.author.mention} {choice(roasts)}")
+        await ctx.send(f"{msg} {choice(roasts)}")
 
+    @commands.command()
+    @commands.guild_only()
+    async def smallcaps(self,ctx,*,message):
+        """ᴄᴏɴᴠᴇʀᴛ ʏᴏᴜʀ ᴛᴇxᴛ ᴛᴏ ꜱᴍᴀʟʟ ᴄᴀᴘꜱ!!"""
+        alpha = list(string.ascii_lowercase)     
+        converter = ['ᴀ', 'ʙ', 'ᴄ', 'ᴅ', 'ᴇ', 'ꜰ', 'ɢ', 'ʜ', 'ɪ', 'ᴊ', 'ᴋ', 'ʟ', 'ᴍ', 'ɴ', 'ᴏ', 'ᴘ', 'ǫ', 'ʀ', 'ꜱ', 'ᴛ', 'ᴜ', 'ᴠ', 'ᴡ', 'x', 'ʏ', 'ᴢ']
+        new = ""
+        exact = message.lower()
+        for letter in exact:
+            if letter in alpha:
+                index = alpha.index(letter)
+                new += converter[index]
+            else:
+                new += letter
+        await ctx.send(new)
+      
 def setup(bot):
     bot.add_cog(Fun(bot))    
 
