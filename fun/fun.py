@@ -242,7 +242,7 @@ class Fun(Cog):
             return await ctx.send(f"Uh?!! Nice try! I am not going to roast myself. Instead I am going to roast you now.\n\n {ctx.author.mention} {choice(roasts)}")
         await ctx.send(f"{msg} {choice(roasts)}")
 
-    @commands.command()
+    @commands.command(aliases=['sc'])
     @commands.guild_only()
     async def smallcaps(self,ctx,*,message):
         """ᴄᴏɴᴠᴇʀᴛ ʏᴏᴜʀ ᴛᴇxᴛ ᴛᴏ ꜱᴍᴀʟʟ ᴄᴀᴘꜱ!!"""
