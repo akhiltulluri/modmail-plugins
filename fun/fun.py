@@ -7,6 +7,7 @@ from dadjokes import Dadjoke
 from core import checks
 import box
 import json
+import string
 from core.models import PermissionLevel
 
 Cog = getattr(commands, "Cog", object)
@@ -240,7 +241,21 @@ class Fun(Cog):
         if str(user.id) == str(ctx.bot.user.id):
             return await ctx.send(f"Uh?!! Nice try! I am not going to roast myself. Instead I am going to roast you now.\n\n {ctx.author.mention} {choice(roasts)}")
         await ctx.send(f"{msg} {choice(roasts)}")
-        
+
+    @commands.command()
+    @commands.guild_only()
+    async def smallcaps(self,ctx,*,message):
+        alpha = list(string.ascii_lowercase)     
+        converter = ['ᴀ', 'ʙ', 'ᴄ', 'ᴅ', 'ᴇ', 'ꜰ', 'ɢ', 'ʜ', 'ɪ', 'ᴊ', 'ᴋ', 'ʟ', 'ᴍ', 'ɴ', 'ᴏ', 'ᴘ', 'ǫ', 'ʀ', 'ꜱ', 'ᴛ', 'ᴜ', 'ᴠ', 'ᴡ', 'x', 'ʏ', 'ᴢ']
+        new = ""
+        exact = message.lower()
+        for letter in exact:
+            if letter in alpha:
+                index = alpha.index(letter)
+                new += converter[index]
+            else:
+                new += letter
+        await ctx.send(new)
       
 def setup(bot):
     bot.add_cog(Fun(bot))    
