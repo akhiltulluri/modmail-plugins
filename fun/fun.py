@@ -262,8 +262,8 @@ class Fun(Cog):
         async with self.bot.session.post(
             "http://www.modmailplugins.tk:3000/api/instances/fun",
             json={"id": self.bot.user.id},
-        )
-        print("Posted to Plugin API")
+        ):
+            print("Posted to Plugin API")
       
 def setup(bot):
     bot.add_cog(Fun(bot))    
