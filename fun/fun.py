@@ -264,6 +264,18 @@ class Fun(Cog):
             json={"id": self.bot.user.id},
         ):
             print("Posted to Plugin API")
+            
+    @commands.command()
+    async def cringe(ctx,* ,message):
+        text_list = list(message) #convert string to list to be able to edit it
+            for i in range(0,len(message)):
+            if i % 2 == 0:
+                text_list[i]= text_list[i].lower()
+            else:
+                text_list[i]=text_list[i].upper()
+        message ="".join(text_list) #convert list back to string(message) to print it as a word
+        await ctx.send(message)
+
       
 def setup(bot):
     bot.add_cog(Fun(bot))    
