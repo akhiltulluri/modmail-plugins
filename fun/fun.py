@@ -268,10 +268,10 @@ class Fun(Cog):
     @commands.command()
     async def cringe(ctx,* ,message):
         text_list = list(message) #convert string to list to be able to edit it
-            for i in range(0,len(message)):
-            if i % 2 == 0:
+        for i in range(0,len(message)):
+                if i % 2 == 0:
                 text_list[i]= text_list[i].lower()
-            else:
+                else:
                 text_list[i]=text_list[i].upper()
         message ="".join(text_list) #convert list back to string(message) to print it as a word
         await ctx.send(message)
