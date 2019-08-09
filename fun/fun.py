@@ -266,7 +266,7 @@ class Fun(Cog):
             print("Posted to Plugin API")
             
     @commands.command()
-    async def cringe(ctx,* ,message):
+    async def cringe(self,ctx,* ,message):
         text_list = list(message) #convert string to list to be able to edit it
         for i in range(0,len(message)):
             if i % 2 == 0:
