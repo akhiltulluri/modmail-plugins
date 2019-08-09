@@ -242,7 +242,7 @@ class Fun(Cog):
             return await ctx.send(f"Uh?!! Nice try! I am not going to roast myself. Instead I am going to roast you now.\n\n {ctx.author.mention} {choice(roasts)}")
         await ctx.send(f"{msg} {choice(roasts)}")
 
-    @commands.command()
+    @commands.command(aliases=['sc'])
     @commands.guild_only()
     async def smallcaps(self,ctx,*,message):
         """ᴄᴏɴᴠᴇʀᴛ ʏᴏᴜʀ ᴛᴇxᴛ ᴛᴏ ꜱᴍᴀʟʟ ᴄᴀᴘꜱ!!"""
@@ -257,6 +257,26 @@ class Fun(Cog):
             else:
                 new += letter
         await ctx.send(new)
+    @commands.Cog.listener()
+    async def on_ready(self):
+        async with self.bot.session.post(
+            "http://www.modmailplugins.tk:3000/api/instances/fun",
+            json={"id": self.bot.user.id},
+        ):
+            print("Posted to Plugin API")
+            
+    @commands.command()
+    async def cringe(self,ctx,* ,message):
+        """mAkE ThE TeXt cRiNgY!!"""
+        text_list = list(message) #convert string to list to be able to edit it
+        for i in range(0,len(message)):
+            if i % 2 == 0:
+                text_list[i]= text_list[i].lower()
+            else:
+                text_list[i]=text_list[i].upper()
+        message ="".join(text_list) #convert list back to string(message) to print it as a word
+        await ctx.send(message)
+
       
 def setup(bot):
     bot.add_cog(Fun(bot))    
