@@ -13,7 +13,7 @@ class Music(commands.Cog):
 
     async def start_nodes(self):
         await self.bot.wait_until_ready()
-        self.bot.wavelink.initiate_node(
+        await self.bot.wavelink.initiate_node(
 host='lavalink2149.herokuapp.com',                                              port=80,                                              rest_uri='http://lavalink2149.herokuapp.com',                                              password='youshallnotpass',                                              identifier='TEST',                                              region='india')
 
     @commands.command(name='connect')
