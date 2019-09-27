@@ -269,10 +269,10 @@ class Music(commands.Cog):
 
     async def initiate_nodes(self):
         host = os.getenv('HOST')
-        password = os.getenv('PASSWORD')
-        nodes = {'MAIN': {'host': 'lavalink2149.herokuapp.com',
+        #password = os.getenv('PASSWORD')
+        nodes = {'MAIN': {'host': host,
                           'port': 80,
-                          'rest_url': 'http://lavalink2149.herokuapp.com',
+                          'rest_url': f'http://{host}',
                           'password': 'youshallnotpass',
                           'identifier': 'MAIN',
                           'region': 'us_central'}}
@@ -558,7 +558,7 @@ class Music(commands.Cog):
         Examples
         ----------
         <prefix>stop
-            {ctx.prefix}stop
+            
         """
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
 
