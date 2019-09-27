@@ -267,10 +267,12 @@ class Music(commands.Cog):
         bot.loop.create_task(self.initiate_nodes())
 
     async def initiate_nodes(self):
-        nodes = {'MAIN': {'host': 'xxx.xxx.xxx.xxx',
+        host = os.getenv('HOST')
+        password = os.getenv('PASSWORD')
+        nodes = {'MAIN': {'host': host,
                           'port': 2333,
-                          'rest_url': 'http://xxx.xxx.xxx.xxx:2333',
-                          'password': "youshallnotpass",
+                          'rest_url': f'http://{host}:2333',
+                          'password': password,
                           'identifier': 'MAIN',
                           'region': 'us_central'}}
 
