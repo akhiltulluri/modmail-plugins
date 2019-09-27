@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import Wavelink
+import wavelink
 import os
 
 class Music(commands.Cog):
