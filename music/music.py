@@ -271,8 +271,8 @@ class Music(commands.Cog):
         host = os.getenv('HOST')
         password = os.getenv('PASSWORD')
         nodes = {'MAIN': {'host': 'lavalink2149.herokuapp.com',
-                          'port': 2333,
-                          'rest_url': 'http://lavalink2149.herokuapp.com:2333',
+                          'port': 80,
+                          'rest_url': 'http://lavalink2149.herokuapp.com',
                           'password': 'youshallnotpass',
                           'identifier': 'MAIN',
                           'region': 'us_central'}}
