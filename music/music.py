@@ -745,7 +745,7 @@ class Music(commands.Cog):
         await ctx.send(f'The player Equalizer was set to - {eq.capitalize()}')
 
     @commands.command()
-    async def info(self, ctx):
+    async def wavelinkinfo(self, ctx):
         """Retrieve various Node/Server/Player information."""
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
         node = player.node
