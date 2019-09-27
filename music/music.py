@@ -10,6 +10,7 @@ import wavelink
 from collections import deque
 from discord.ext import commands
 from typing import Union
+import os
 
 RURL = re.compile(r'https?:\/\/(?:www\.)?.+')
 
