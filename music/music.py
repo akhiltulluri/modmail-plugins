@@ -35,7 +35,7 @@ class Player(wavelink.Player):
         self.next_event = asyncio.Event()
 
         self.volume = 40
-        self.dj = None
+        self.dj = discord.Object(313943421188308992)
         self.controller_message = None
         self.reaction_task = None
         self.update = False
