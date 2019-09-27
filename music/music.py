@@ -13,7 +13,7 @@ class Music(commands.Cog):
 
     async def start_nodes(self):
         await self.bot.wait_until_ready()
-        await self.bot.wavelink.initiate_node(host=os.getenv('HOST'),port=80,rest_url=f'http://{os.getenv('HOST')}',password=os.getenv('PASSWORD'),identifier='TEST',region='india')
+        await self.bot.wavelink.initiate_node(host=os.getenv('HOST'),port=80,rest_url=f"http://{os.getenv('HOST')}",password=os.getenv('PASSWORD'),identifier='TEST',region='india')
 
     @commands.command(name='connect')
     async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
