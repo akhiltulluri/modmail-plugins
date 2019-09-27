@@ -119,7 +119,7 @@ class Player(wavelink.Player):
         self.updating = True
 
         embed = discord.Embed(title='Music Controller',
-                              description=f'<a:eq:545194963810648077>Now Playing:```ini\n{track.title}\n\n'
+                              description=f'\U0001f3b5Now Playing:```ini\n{track.title}\n\n'
                               f'[EQ]: {self.eq}\n'
                               f'[Presets]: Flat/Boost/Piano/Metal```',
                               colour=0xffb347)
@@ -453,7 +453,7 @@ class Music(commands.Cog):
         Examples
         ----------
         <prefix>now_playing
-            {ctx.prefix}np
+            
         The player controller contains various information about the current and upcoming songs.
         """
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
@@ -474,7 +474,7 @@ class Music(commands.Cog):
         Examples
         ----------
         <prefix>pause
-            {ctx.prefix}pause
+            
         """
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
         if not player:
@@ -502,7 +502,7 @@ class Music(commands.Cog):
         Examples
         ----------
         <prefix>resume
-            {ctx.prefix}resume
+            
         """
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
 
@@ -529,7 +529,7 @@ class Music(commands.Cog):
         Examples
         ----------
         <prefix>skip
-            {ctx.prefix}skip
+            
         """
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
 
@@ -591,7 +591,7 @@ class Music(commands.Cog):
         Examples
         ----------
         <prefix>volume <value>
-            {ctx.prefix}volume 50
+            <prefix>volume 50
         """
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
 
@@ -622,8 +622,6 @@ class Music(commands.Cog):
         Examples
         ----------
         <prefix>queue
-            {ctx.prefix}queue
-            {ctx.prefix}q
         """
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
 
@@ -650,8 +648,7 @@ class Music(commands.Cog):
         Examples
         ----------
         <prefix>shuffle
-            {ctx.prefix}shuffle
-            {ctx.prefix}mix
+         
         """
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
 
@@ -679,7 +676,7 @@ class Music(commands.Cog):
         Examples
         ----------
         <prefix>repeat
-            {ctx.prefix}repeat
+            
         """
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
 
@@ -736,6 +733,7 @@ class Music(commands.Cog):
 
     @commands.command(name='seteq')
     async def set_eq(self, ctx, *, eq: str):
+        """Set a Equalizer. Valid Options are Flat, Boost, Metal and Piano"""
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
 
         if eq.upper() not in player.equalizers:
