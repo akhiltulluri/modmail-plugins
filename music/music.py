@@ -270,10 +270,10 @@ class Music(commands.Cog):
     async def initiate_nodes(self):
         host = os.getenv('HOST')
         password = os.getenv('PASSWORD')
-        nodes = {'MAIN': {'host': host,
+        nodes = {'MAIN': {'host': 'lavalink2149.herokuapp.com',
                           'port': 2333,
-                          'rest_url': f'http://{host}:2333',
-                          'password': password,
+                          'rest_url': 'http://lavalink2149.herokuapp.com:2333',
+                          'password': 'youshallnotpass',
                           'identifier': 'MAIN',
                           'region': 'us_central'}}
 
