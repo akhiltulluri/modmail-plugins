@@ -271,8 +271,8 @@ class Music(commands.Cog):
         host = os.getenv('HOST')
         #password = os.getenv('PASSWORD')
         nodes = {'MAIN': {'host': host,
-                          'port': 3000,
-                          'rest_url': f'http://{host}',
+                          'port': 2333,
+                          'rest_url': f'http://{host}:2333',
                           'password': 'youshallnotpass',
                           'identifier': 'MAIN',
                           'region': 'us_central'}}
