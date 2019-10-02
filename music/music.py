@@ -520,11 +520,11 @@ class Music(commands.Cog):
 
     async def do_stop(self, ctx):
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
-        del player.queue
+        await player.queue.join()
         
         await player.destroy_controller()
         await player.disconnect()
-        player.queue = asyncio.Queue
+        
 
     @commands.command(name='volume', aliases=['vol'])
     @commands.cooldown(1, 2, commands.BucketType.guild)
