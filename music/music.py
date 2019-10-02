@@ -266,10 +266,10 @@ class Music(commands.Cog):
 
     async def initiate_nodes(self):
         host = os.getenv('HOST')
-        password = os.getenv('PASSWORD') if 'PASSWORD' in os.environ else 'youshallnotpass'
-        port=int(os.getenv('PORT')) if 'PORT' in os.environ else 80
+        password = os.getenv('PASSWORD','youshallnotpass') 
+        port=int(os.getenv('PORT'),80)
 
-        region = os.getenv('REGION') if 'REGION' in os.environ else 'us_central'
+        region = os.getenv('REGION','us_central')
         nodes = {'MAIN': {'host': host,
                           'port': port,
                           'rest_url': f'http://{host}:{port}',
