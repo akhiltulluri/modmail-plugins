@@ -521,9 +521,7 @@ class Music(commands.Cog):
     async def do_stop(self, ctx):
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
         song_list = player.entries
-        for _ in range(len(song_list)+1):
-            await player.stop()
-        
+        song_list = []    
         await player.destroy_controller()
         await player.disconnect()
         
