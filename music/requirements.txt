@@ -1,1 +1,1 @@
-Wavelink
+git+https://github.com/EvieePy/Wavelink@master#egg=Wavelink
