@@ -119,7 +119,7 @@ class Player(wavelink.Player):
         self.updating = True
 
         embed = discord.Embed(title='Music Controller',
-                              description=f'\U0001f3b5 Now Playing:>\n{track.title}')                           colour=0xffb347)
+                              description=f'\U0001f3b5 Now Playing:>\n{track.title}',colour=0xffb347)
         embed.set_thumbnail(url=track.thumb)
 
         if track.is_stream:
