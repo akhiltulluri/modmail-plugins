@@ -271,11 +271,11 @@ class Music(commands.Cog):
 
         region = os.getenv('REGION') if 'REGION' in os.environ else 'us_central'
         nodes = {'MAIN': {'host': host,
-                          'port': {port},
+                          'port': port,
                           'rest_url': f'http://{host}:{port}',
-                          'password': {password},
+                          'password': password,
                           'identifier': 'MAIN',
-                          'region': {region}}}
+                          'region': region}}
 
         for n in nodes.values():
             node = await self.bot.wavelink.initiate_node(host=n['host'],
