@@ -272,7 +272,7 @@ class Music(commands.Cog):
         region = os.getenv('REGION') if 'REGION' in os.environ else 'us_central'
         nodes = {'MAIN': {'host': host,
                           'port': {port},
-                          'rest_url': f'http://{host}:{port}',
+                          'rest_url': f'http://{host}:{str(port)}',
                           'password': {password},
                           'identifier': 'MAIN',
                           'region': {region}}}
