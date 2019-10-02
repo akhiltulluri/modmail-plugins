@@ -520,7 +520,10 @@ class Music(commands.Cog):
 
     async def do_stop(self, ctx):
         player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
-        player.queue._queue.clear()
+        #player.queue._queue.clear()
+        while not player.queue.empty():
+            player.queue.get_nowait()
+        player.queue.task_done()
         await player.destroy_controller()
         await player.disconnect()
         
