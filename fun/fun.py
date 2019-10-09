@@ -270,6 +270,7 @@ class Fun(Cog):
                 text_list[i]=text_list[i].upper()
         message ="".join(text_list) #convert list back to string(message) to print it as a word
         await ctx.send(message)
+        await ctx.message.delete()
 
       
 def setup(bot):
