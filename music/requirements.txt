@@ -1,2 +1,1 @@
-Wavelink==0.2.9
-humanize
+youtube_dl
