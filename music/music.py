@@ -158,7 +158,8 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.players = {}
-
+        if not discord.opus.is_loaded():
+    discord.opus.load_opus('libopus.so')
     async def cleanup(self, guild):
         try:
             await guild.voice_client.disconnect()
