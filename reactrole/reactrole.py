@@ -95,7 +95,7 @@ class ReactionRole(commands.Cog):
         allowed = True if data['whitelist'] == [] else False
         if not allowed:
             for rol in roles:
-                if rol.id in data['whitelist']:
+                if str(rol.id) in data['whitelist']:
                     allowed = True
                     return
         for rol1 in roles:
@@ -130,8 +130,8 @@ class ReactionRole(commands.Cog):
                 return
             else:
                 common = 0
-                for rol in roles:
-                    if str(rol.id) in linked_roles:
+                for rol2 in roles:
+                    if str(rol2.id) in linked_roles:
                         common +=1
                 if common > limit:
                     action=None
@@ -173,11 +173,11 @@ class ReactionRole(commands.Cog):
         allowed = True if data['whitelist'] == [] else False
         if not allowed:
             for rol in roles:
-                if rol.id in data['whitelist']:
+                if str(rol.id) in data['whitelist']:
                     allowed = True
                     return
-        for rol in roles:
-            if rol.id in data['blacklist']:
+        for rol1 in roles:
+            if str(rol1.id) in data['blacklist']:
                 blacklisted = True
                 return
         action = member.add_roles 
@@ -208,8 +208,8 @@ class ReactionRole(commands.Cog):
                 return
             else:
                 common = 0
-                for rol in roles:
-                    if str(rol.id) in linked_roles:
+                for rol2 in roles:
+                    if str(rol2.id) in linked_roles:
                         common +=1
                 if common > limit:
                     action=None
