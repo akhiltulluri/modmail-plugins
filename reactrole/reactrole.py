@@ -87,7 +87,7 @@ class ReactionRole(commands.Cog):
             if action == member.remove_roles or role in roles:
                 action = None
         linked_roles = []
-        if data['limit'] not None:
+        if data['limit'] != None:
             limit = int(data['limit'])
             cursor = await self.db.find({'message_id':str(payload.message_id)})
             async for doc in cursor:
