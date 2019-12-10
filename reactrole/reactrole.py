@@ -104,6 +104,7 @@ class ReactionRole(commands.Cog):
         if action != None:
             if data['reversed']:
                 action = member.add_roles
+            await action(role)
             print(role)
                         
     @commands.Cog.listener('on_raw_reaction_add')                
@@ -176,7 +177,7 @@ class ReactionRole(commands.Cog):
         if action != None:
             if data['reversed']:
                 action = member.remove_roles
-            #await action(role)  
+            await action(role)  
             print(role)       
         else:
             print('Action is None')
