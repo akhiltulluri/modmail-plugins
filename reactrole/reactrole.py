@@ -98,8 +98,8 @@ class ReactionRole(commands.Cog):
                 if rol.id in data['whitelist']:
                     allowed = True
                     return
-        for rol in roles:
-            if rol.id in data['blacklist']:
+        for rol1 in roles:
+            if rol1.id in data['blacklist']:
                 blacklisted = True
                 return
         action = member.remove_roles
