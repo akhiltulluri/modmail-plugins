@@ -62,7 +62,7 @@ class ReactionRole(commands.Cog):
         {
         'guild_id':str(payload.guild_id),
         'msg_id':str(payload.message_id),
-        'emoji':str(payload.emoji)
+        'emoji':str(emoji)
         })
         print(data)
         if not data:
