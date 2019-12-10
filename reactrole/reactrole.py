@@ -38,7 +38,8 @@ class ReactionRole(commands.Cog):
             emoji = self.bot.get_emoji(related_emoji)
             emote = emoji if emoji is not None else related_emoji
             description += f"{rol} ===> {emote}\n"
-        embed = discord.Embed(title=f"Reaction roles mapping for {message.id}",description=description)  
+        embed = discord.Embed(title=f"Reaction roles mapping for {message.id}",description=description)
+        await ctx.send(embed=embed)  
                         
     @reactrole.command(name="blacklist",aliases=["bl"])
     async def blacklist_roles(self,ctx,message:discord.Message,add:bool,roles:commands.Greedy[discord.Role]):
