@@ -65,12 +65,12 @@ class ReactionRole(commands.Cog):
         blacklisted = False
         allowed = True if data['whitelist'] == [] else False
         if not allowed:
-            for role in roles:
-                if role.id in data['whitelist']:
+            for rol in roles:
+                if rol.id in data['whitelist']:
                     allowed = True
                     return
-        for role in roles:
-            if role.id in data['blacklist']:
+        for rol in roles:
+            if rol.id in data['blacklist']:
                 blacklisted = True
                 return
         action = member.remove_roles
@@ -96,8 +96,8 @@ class ReactionRole(commands.Cog):
                 return
             else:
                 common = 0
-                for role in roles:
-                    if str(role.id) in linked_roles:
+                for rol in roles:
+                    if str(rol.id) in linked_roles:
                         common +=1
                 if common > limit:
                     action=None
@@ -131,12 +131,12 @@ class ReactionRole(commands.Cog):
         blacklisted = False
         allowed = True if data['whitelist'] == [] else False
         if not allowed:
-            for role in roles:
-                if role.id in data['whitelist']:
+            for rol in roles:
+                if rol.id in data['whitelist']:
                     allowed = True
                     return
-        for role in roles:
-            if role.id in data['blacklist']:
+        for rol in roles:
+            if rol.id in data['blacklist']:
                 blacklisted = True
                 return
         action = member.add_roles 
@@ -167,8 +167,8 @@ class ReactionRole(commands.Cog):
                 return
             else:
                 common = 0
-                for role in roles:
-                    if str(role.id) in linked_roles:
+                for rol in roles:
+                    if str(rol.id) in linked_roles:
                         common +=1
                 if common > limit:
                     action=None
