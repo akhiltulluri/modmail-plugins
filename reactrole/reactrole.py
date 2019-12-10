@@ -29,7 +29,7 @@ class ReactionRole(commands.Cog):
             role_ids = []        
             reply = ""
             for role in roles:
-                reply += f'{ role}'
+                reply += f' {role}'
                 role_ids.append(str(role.id))     
             await self.db.update_many({'msg_id':str(message.id)},{"$set":{"blacklist":role_ids}})
             
