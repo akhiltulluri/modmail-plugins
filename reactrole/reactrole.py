@@ -134,6 +134,7 @@ class ReactionRole(commands.Cog):
         'msg_id':str(payload.message_id),
         'emoji':str(payload.emoji)
         })
+        print(f'{payload.emoji}')
         if not data:
             
             return
