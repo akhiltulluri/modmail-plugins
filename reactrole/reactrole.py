@@ -24,7 +24,7 @@ class ReactionRole(commands.Cog):
 
 
     @reactrole.command(name="blacklist",aliases=["bl"])
-    async def blacklist_roles(self,ctx,message:discord.Message,add:Boolean,roles:commands.Greedy[discord.Role]):
+    async def blacklist_roles(self,ctx,message:discord.Message,add:bool,roles:commands.Greedy[discord.Role]):
         if add:
             role_ids = []        
             reply = ""
