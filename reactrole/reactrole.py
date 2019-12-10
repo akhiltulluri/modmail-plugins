@@ -59,7 +59,7 @@ class ReactionRole(commands.Cog):
         })
         if not data:
             return
-        role_id = data["role"]
+        role_id = int(data["role"])
         role = guild.get_role(role_id)
         roles = member.roles
         blacklisted = False
@@ -124,7 +124,7 @@ class ReactionRole(commands.Cog):
         if not data:
             
             return
-        role_id = data["role"]
+        role_id = int(data["role"])
         role = guild.get_role(role_id)
         print(role)
         roles = member.roles
