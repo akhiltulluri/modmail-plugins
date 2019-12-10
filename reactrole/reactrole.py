@@ -48,7 +48,7 @@ class ReactionRole(commands.Cog):
             return
             
         guild = self.bot.get_guild(payload.guild_id)
-        member = self.bot.get_member(payload.user_id)
+        member = guild.get_member(payload.user_id)
         if member.bot:
             return
         data = await self.db.find_one(
