@@ -53,6 +53,11 @@ class ReactionRole(commands.Cog):
         print(f'{payload.emoji}')
         if member.bot:
             return
+        emoji = str(payload.emoji)
+        if emoji.animated:
+            fir,last = emoji.split(":",1)
+            emoji = fir + 'a:' + last
+            
         data = await self.db.find_one(
         {
         'guild_id':str(payload.guild_id),
@@ -128,6 +133,7 @@ class ReactionRole(commands.Cog):
         member = guild.get_member(payload.user_id)
         if member.bot:
             return
+        
         data = await self.db.find_one(
         {
         'guild_id':str(payload.guild_id),
