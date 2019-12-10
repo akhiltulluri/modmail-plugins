@@ -25,10 +25,12 @@ class ReactionRole(commands.Cog):
 
     @reactrole.command(name="blacklist",aliases=["bl"])
     async def blacklist_roles(self,ctx,message:discord.Message,roles:commands.Greedy[discord.Role]):
-        await self.db.find_one_and_update({'msg_id':str(message.id)},{'$set': {'blacklist':roles}})
+        role_ids = []        
         reply = ""
         for role in roles:
-            reply += str(role)            
+            reply += str(role) 
+            role_ids.append(str(role.id))     
+        await self.db.find_one_and_update({'msg_id':str(message.id)},{'$set': {'blacklist':role_ids}})      
         await ctx.send(f"Successfully Blacklisted {reply} role(s)")
         
     @reactrole.command(name="remove",aliases=["-"])
