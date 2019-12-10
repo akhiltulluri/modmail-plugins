@@ -58,6 +58,7 @@ class ReactionRole(commands.Cog):
         'msg_id':str(payload.message_id),
         'emoji':str(payload.emoji)
         })
+        print(data)
         if not data:
             return
         role_id = int(data["role"])
