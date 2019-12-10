@@ -22,7 +22,24 @@ class ReactionRole(commands.Cog):
     async def reactrole(self,ctx):
         await ctx.send_help(ctx.command)
 
-
+    @reactrole.command(name="list")
+    async def list_rr(self,ctx,message:discord.Message):
+        cursor = await self.db.find({"msg_id":str(message.id)})
+        role_list = []
+        emoji_list = []
+        async for doc in cursor:
+            role_list.append(doc["role"])
+            emoji_list.append(doc["emoji"])   
+        description = ""                      
+        for role in role_list:
+            ind = role_list.index(role)
+            rol = ctx.guild.get_role(int(role))
+            related_emoji = emoji_list[ind]            
+            emoji = self.bot.get_emoji(related_emoji)
+            emote = emoji if emoji is not None else related_emoji
+            description += f"{rol} ===> {emote}\n"
+        embed = discord.Embed(title=f"Reaction roles mapping for {message.id}",description=description)  
+                        
     @reactrole.command(name="blacklist",aliases=["bl"])
     async def blacklist_roles(self,ctx,message:discord.Message,add:bool,roles:commands.Greedy[discord.Role]):
         if add:
@@ -33,7 +50,7 @@ class ReactionRole(commands.Cog):
                 role_ids.append(str(role.id))     
             await self.db.update_many({'msg_id':str(message.id)},{"$set":{"blacklist":role_ids}})
             
-            await ctx.send(f"Successfully Blacklisted{reply} role(s)")
+            await ctx.send(f"Successfully Blacklisted{reply} role(s)!!")
         if not add:
             current_blacklisted = (await self.db.find_one({'msg_id':str(message.id)}))['blacklist']
             reply1=""
@@ -44,7 +61,7 @@ class ReactionRole(commands.Cog):
                     reply1 += f' {rol}'
                    
             if not common_roles:
-                return await ctx.send("The roles provided are not blacklisted")
+                return await ctx.send("The roles provided are not blacklisted!")
             new_blacklist = []
         
             for rol1 in current_blacklisted:
