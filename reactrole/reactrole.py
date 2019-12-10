@@ -102,9 +102,9 @@ class ReactionRole(commands.Cog):
                 if common > limit:
                     action=None
         if action != None:
-            if reversed:
+            if data['reversed']:
                 action = member.add_roles
-            await action(role)
+            print(role)
                         
     @commands.Cog.listener('on_raw_reaction_add')                
     async def add_reactrole_handler(self, payload):
@@ -173,9 +173,10 @@ class ReactionRole(commands.Cog):
                     action=None
                     print('Common > Limit')
         if action != None:
-            if reversed:
+            if data['reversed']:
                 action = member.remove_roles
-            await action(role)           
+            #await action(role)  
+            print(role)       
         else:
             print('Action is None')
         
