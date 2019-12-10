@@ -44,6 +44,7 @@ class ReactionRole(commands.Cog):
     
     @commands.Cog.listener('on_raw_reaction_remove')
     async def remove_reactrole_handler(self, payload):
+        print("reaction removed")
         if payload.guild_id is None:
             return
             
@@ -112,6 +113,7 @@ class ReactionRole(commands.Cog):
                 action = member.add_roles
             await action(role)
             #print(role)
+            print(action)
         else:
             print("Action none")
                         
