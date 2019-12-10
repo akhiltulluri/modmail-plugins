@@ -23,6 +23,14 @@ class ReactionRole(commands.Cog):
         await ctx.send_help(ctx.command)
 
 
+    @reactrole.command(name="blacklist",aliases=["bl"])
+    async def blacklist_roles(self,ctx,message:discord.Message,roles:commands.Greedy[discord.Role]):
+        await self.db.find_one_and_update({'msg_id':str(message.id)},{'$set': {'blacklist':roles}})
+        reply = ""
+        for role in roles:
+            reply += str(role)            
+        await ctx.send(f"Successfully Blacklisted {reply} role(s)")
+        
     @reactrole.command(name="remove",aliases=["-"])
     async def remove_reactrole(self,ctx,message:discord.Message,emoji:Emoji,role:discord.Role):
         member = ctx.guild.get_member(self.bot.user.id)
