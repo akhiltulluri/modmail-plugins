@@ -31,7 +31,7 @@ class ReactionRole(commands.Cog):
         'guild_id':str(ctx.guild.id),
         'msg_id':str(message.id),
         'emoji':emote
-        }
+        })
         await message.remove_reaction(emoji)  
         await ctx.send(f'Removed {emoji} for role {role}')     
         @reactrole.command(name="add",aliases=["+"])
