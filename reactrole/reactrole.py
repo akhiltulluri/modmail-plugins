@@ -22,7 +22,18 @@ class ReactionRole(commands.Cog):
     async def reactrole(self,ctx):
         await ctx.send_help(ctx.command)
 
-    @reactrole.command(name="list")
+    @reactrole.command(name="lock")
+    async def lock_rr(self,ctx,message:discord.Message):
+        self.db.update_many({'msg_id':str(message.id},{"$set":{"locked":True}}))
+        await ctx.send(f"Successfully locked react role on that message")
+    
+    @reactrole.command(name="unlock")
+    async def unlock_rr(self,ctx,message:discord.Message):
+        self.db.update_many({'msg_id':str(message.id},{"$set":{"locked":False}}))
+        await ctx.send(f"Successfully unlocked react role on that message")
+        
+        
+    @reactrole.command(name="info")
     async def list_rr(self,ctx,message:discord.Message):
         cursor =  self.db.find({"msg_id":str(message.id)})
         role_list = []
@@ -40,7 +51,7 @@ class ReactionRole(commands.Cog):
                 emoji = self.bot.get_emoji(int(related_emoji))
             except ValueError:
                 emoji = related_emoji
-            description += f"{rol}  \U000027a1  {emoji}\n"
+            description += f"\n{rol}  \U000027a1  {emoji}\n"
         embed = discord.Embed(title=f"Reaction roles mapping",description=description)
         await ctx.send(embed=embed)  
                         
