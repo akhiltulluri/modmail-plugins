@@ -76,15 +76,20 @@ class ReactionRole(commands.Cog):
         action = member.remove_roles
         if data['locked']:
             action = None
+            print("Locked")
         if blacklisted:
             action = None
+            print("Blacklisted")
         if not allowed:
-            action = None                
+            action = None 
+            print("Not allowed")               
         if data['drop']:
             if role not in roles:
                 action = None
+                print("Drop")
         if data['verify']:            
             action = None
+            print("Verify")
         linked_roles = []
         if data['limit'] != None:
             limit = int(data['limit'])
@@ -101,11 +106,14 @@ class ReactionRole(commands.Cog):
                         common +=1
                 if common > limit:
                     action=None
+                    print("limit")
         if action != None:
             if data['reversed']:
                 action = member.add_roles
             await action(role)
-            print(role)
+            #print(role)
+        else:
+            print("Action none")
                         
     @commands.Cog.listener('on_raw_reaction_add')                
     async def add_reactrole_handler(self, payload):
