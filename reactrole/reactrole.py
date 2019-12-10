@@ -24,10 +24,11 @@ class ReactionRole(commands.Cog):
         
     @reactrole.command(name="add",aliases=["+"])
     async def add_reactrole(self,ctx,message:discord.Message,emoji:Emoji,role:discord.Role):
+        emote = str(emoji) if emoji.id is None else str(emoji.id)
         await self.db.insert_one({
         'guild_id':str(ctx.guild.id),
         'msg_id':str(message.id),
-        'emoji':str(emoji),
+        'emoji':emote,
         'role':str(role.id),
         'locked':False,
         'drop':False,
@@ -53,17 +54,12 @@ class ReactionRole(commands.Cog):
         
         if member.bot:
             return
-        emoji = payload.emoji
-        print(emoji.animated)
-        if emoji.animated:
-            fir,last = str(emoji).split(":",1)
-            emoji = fir + 'a:' + last
-        print(str(emoji))    
+        emoji = str(payload.emoji) if payload.emoji.id is None else str(payload.emoji.id)
         data = await self.db.find_one(
         {
         'guild_id':str(payload.guild_id),
         'msg_id':str(payload.message_id),
-        'emoji':str(emoji)
+        'emoji':emoji
         })
         print(data)
         if not data:
@@ -134,12 +130,12 @@ class ReactionRole(commands.Cog):
         member = guild.get_member(payload.user_id)
         if member.bot:
             return
-        
+        emoji = str(payload.emoji) if payload.emoji.id is None else str(payload.emoji.id)
         data = await self.db.find_one(
         {
         'guild_id':str(payload.guild_id),
         'msg_id':str(payload.message_id),
-        'emoji':str(payload.emoji)
+        'emoji':emoji
         })
         print(f'{payload.emoji}')
         if not data:
