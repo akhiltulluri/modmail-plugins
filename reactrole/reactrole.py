@@ -35,12 +35,11 @@ class ReactionRole(commands.Cog):
             ind = role_list.index(role)
             rol = ctx.guild.get_role(int(role))
             related_emoji = emoji_list[ind]         
-            if related_emoji.is_unicode_emoji():
+            try:              
+                emoji = self.bot.get_emoji(int(related_emoji))
+            except ValueError:
                 emoji = related_emoji
-            else:   
-                emoji = self.bot.get_emoji(related_emoji)
-            
-            description += f"{rol} ===> {emoji}\n"
+            description += f"{rol} \U000027a1 {emoji}\n"
         embed = discord.Embed(title=f"Reaction roles mapping for {message.id}",description=description)
         await ctx.send(embed=embed)  
                         
