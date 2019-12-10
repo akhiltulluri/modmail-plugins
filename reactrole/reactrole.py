@@ -122,6 +122,7 @@ class ReactionRole(commands.Cog):
         'emoji':str(payload.emoji)
         })
         if not data:
+            
             return
         role_id = data["role"]
         role = guild.get_role(role_id)
@@ -140,15 +141,20 @@ class ReactionRole(commands.Cog):
         action = member.add_roles 
         if data['locked']:
             action = None
+            print('Locked is True')
         if blacklisted:
             action = None
+            print('Blacklisted is True')
         if allowed:
-            action = None                
+            action = None
+            print('Allowed is True')                
         if data['drop']:            
             action = None
+            print('Drop is true')
         if data['verify']:
             if role in roles:
                 action = None
+                print('Verify is true')
         linked_roles = []
         if data['limit'] != None:
             limit = int(data['limit'])
@@ -165,11 +171,13 @@ class ReactionRole(commands.Cog):
                         common +=1
                 if common > limit:
                     action=None
+                    print('Common > Limit')
         if action != None:
             if reversed:
                 action = member.remove_roles
             await action(role)           
-        
+        else:
+            print('Action is None')
         
             
                 
