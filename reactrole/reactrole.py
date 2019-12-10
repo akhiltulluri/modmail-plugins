@@ -36,7 +36,7 @@ class ReactionRole(commands.Cog):
             rol = ctx.guild.get_role(int(role))
             related_emoji = emoji_list[ind]            
             emoji = self.bot.get_emoji(related_emoji)
-            emote = related_emoji if emoji.id is None else emoji
+            emote = related_emoji if emoji is None else emoji
             description += f"{rol} ===> {emote}\n"
         embed = discord.Embed(title=f"Reaction roles mapping for {message.id}",description=description)
         await ctx.send(embed=embed)  
