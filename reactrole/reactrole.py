@@ -53,9 +53,9 @@ class ReactionRole(commands.Cog):
         print(f'{payload.emoji}')
         if member.bot:
             return
-        emoji = str(payload.emoji)
+        emoji = payload.emoji
         if emoji.animated:
-            fir,last = emoji.split(":",1)
+            fir,last = str(emoji).split(":",1)
             emoji = fir + 'a:' + last
             
         data = await self.db.find_one(
