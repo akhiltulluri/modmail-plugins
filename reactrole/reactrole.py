@@ -21,8 +21,20 @@ class ReactionRole(commands.Cog):
     @commands.group(invoke_without_command=True,aliases=['rr'])
     async def reactrole(self,ctx):
         await ctx.send_help(ctx.command)
-        
-    @reactrole.command(name="add",aliases=["+"])
+
+
+    @reactrole.command(name="remove",aliases=["-"])
+    async def remove_reactrole(self,ctx,message:discord.Message,emoji:Emoji,role:discord.Role):
+        emote = str(emoji) if emoji.id is None else str(emoji.id)
+        await self.db.delete_one(
+        {
+        'guild_id':str(ctx.guild.id),
+        'msg_id':str(message.id),
+        'emoji':emote
+        }
+        await message.remove_reaction(emoji)  
+        await ctx.send(f'Removed {emoji} for role {role}')     
+        @reactrole.command(name="add",aliases=["+"])
     async def add_reactrole(self,ctx,message:discord.Message,emoji:Emoji,role:discord.Role):
         emote = str(emoji) if emoji.id is None else str(emoji.id)
         await self.db.insert_one({
@@ -39,7 +51,7 @@ class ReactionRole(commands.Cog):
         'reversed':False,
         })
         await message.add_reaction(emoji)
-        await ctx.send(f'{emoji}-{role} added to that message')
+        await ctx.send(f'Added {emoji} for the role {role}')
         
     
     
