@@ -145,7 +145,7 @@ class ReactionRole(commands.Cog):
         if blacklisted:
             action = None
             print('Blacklisted is True')
-        if allowed:
+        if not allowed:
             action = None
             print('Allowed is True')                
         if data['drop']:            
