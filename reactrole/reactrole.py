@@ -25,7 +25,7 @@ class ReactionRole(commands.Cog):
 
     @reactrole.command(name="remove",aliases=["-"])
     async def remove_reactrole(self,ctx,message:discord.Message,emoji:Emoji,role:discord.Role):
-        member = ctx.guild.get_member(self.bot.id)
+        member = ctx.guild.get_member(self.bot.user.id)
         emote = str(emoji) if emoji.id is None else str(emoji.id)
         await self.db.delete_one(
         {
