@@ -70,7 +70,7 @@ class ReactionRole(commands.Cog):
                     allowed = True
                     return
         for role in roles:
-            if role.id in data['blacklisted']:
+            if role.id in data['blacklist']:
                 blacklisted = True
                 return
         action = member.add_roles if payload.event_type == "REACTION_ADD" else member.remove_roles
