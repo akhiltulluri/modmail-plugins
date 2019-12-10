@@ -48,8 +48,8 @@ class ReactionRole(commands.Cog):
             new_blacklist = []
         
             for rol1 in current_blacklisted:
-                if str(rol1.id) not in common_roles:
-                    new_blacklist.append(str(rol1.id))
+                if rol1 not in common_roles:
+                    new_blacklist.append(rol1)
             await self.db.update_many({'msg_id':str(message.id)},{"$set":{"blacklist":new_blacklist}})
             await ctx.send(f"Succefully removed{reply1} from Blacklist!")
         
