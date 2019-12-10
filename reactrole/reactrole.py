@@ -126,6 +126,7 @@ class ReactionRole(commands.Cog):
             return
         role_id = data["role"]
         role = guild.get_role(role_id)
+        print(role)
         roles = member.roles
         blacklisted = False
         allowed = True if data['whitelist'] == [] else False
