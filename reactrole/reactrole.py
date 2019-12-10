@@ -33,8 +33,9 @@ class ReactionRole(commands.Cog):
         'emoji':emote
         })
         await message.remove_reaction(emoji)  
-        await ctx.send(f'Removed {emoji} for role {role}')     
-        @reactrole.command(name="add",aliases=["+"])
+        await ctx.send(f'Removed {emoji} for role {role}')    
+         
+    @reactrole.command(name="add",aliases=["+"])
     async def add_reactrole(self,ctx,message:discord.Message,emoji:Emoji,role:discord.Role):
         emote = str(emoji) if emoji.id is None else str(emoji.id)
         await self.db.insert_one({
