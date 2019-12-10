@@ -78,7 +78,7 @@ class ReactionRole(commands.Cog):
             action = None
         if blacklisted:
             action = None
-        if allowed:
+        if not allowed:
             action = None                
         if data['drop']:
             if role not in roles:
