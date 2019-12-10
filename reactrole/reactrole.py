@@ -31,7 +31,7 @@ class ReactionRole(commands.Cog):
             role_list.append(doc["role"])
             emoji_list.append(doc["emoji"])
             
-        description = f"Message: [Click here]({message.jump_url}) to see the message."                    
+        description = f"[Click here]({message.jump_url}) to see the message."                    
         for role in role_list:
             ind = role_list.index(role)
             rol = ctx.guild.get_role(int(role))
