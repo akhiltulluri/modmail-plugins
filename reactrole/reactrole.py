@@ -54,6 +54,7 @@ class ReactionRole(commands.Cog):
         if member.bot:
             return
         emoji = payload.emoji
+        print(emoji.animated)
         if emoji.animated:
             fir,last = str(emoji).split(":",1)
             emoji = fir + 'a:' + last
