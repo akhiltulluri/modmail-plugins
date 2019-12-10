@@ -29,8 +29,9 @@ class ReactionRole(commands.Cog):
         emoji_list = []
         async for doc in cursor:
             role_list.append(doc["role"])
-            emoji_list.append(doc["emoji"])   
-        description = ""                      
+            emoji_list.append(doc["emoji"])
+            
+        description = f"Message: [Click here]({message.jump_url}) to see the message."                    
         for role in role_list:
             ind = role_list.index(role)
             rol = ctx.guild.get_role(int(role))
@@ -39,8 +40,8 @@ class ReactionRole(commands.Cog):
                 emoji = self.bot.get_emoji(int(related_emoji))
             except ValueError:
                 emoji = related_emoji
-            description += f"{rol} \U000027a1 {emoji}\n"
-        embed = discord.Embed(title=f"Reaction roles mapping for {message.id}",description=description)
+            description += f"\n{rol}  \U000027a1  {emoji}\n"
+        embed = discord.Embed(title=f"Reaction roles mapping",description=description)
         await ctx.send(embed=embed)  
                         
     @reactrole.command(name="blacklist",aliases=["bl"])
