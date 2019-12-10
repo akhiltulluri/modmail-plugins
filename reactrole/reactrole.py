@@ -24,14 +24,40 @@ class ReactionRole(commands.Cog):
 
 
     @reactrole.command(name="blacklist",aliases=["bl"])
-    async def blacklist_roles(self,ctx,message:discord.Message,roles:commands.Greedy[discord.Role]):
+    async def blacklist_roles(self,ctx,message:discord.Message,add:Boolean,roles:commands.Greedy[discord.Role]):
+    if add:
         role_ids = []        
         reply = ""
         for role in roles:
-            reply += str(role) 
+            reply += f'{ role}'
             role_ids.append(str(role.id))     
-        await self.db.find_one_and_update({'msg_id':str(message.id)},{'$set': {'blacklist':role_ids}})      
-        await ctx.send(f"Successfully Blacklisted {reply} role(s)")
+        await self.db.update_many({'msg_id':str(message.id)},{"$set":{"blacklist":role_ids}})
+            
+        await ctx.send(f"Successfully Blacklisted{reply} role(s)")
+    if not add:
+        current_blacklisted = (await self.db.find_one({'msg_id':str(message.id)}))['blacklist']
+        reply1=""
+        common_roles = []
+        for rol in roles:
+            if str(rol.id) in current_blacklisted:
+                common_roles.append(str(rol.id))
+                reply1 += f' {rol}'
+                   
+        if not common_roles:
+            return await ctx.send("The roles provided are not blacklisted")
+        new_blacklist = []
+        
+        for rol1 in current_blacklisted:
+            if str(rol1.id) not in common_roles:
+                new_blacklist.append(str(rol1.id))
+        await self.db.update_many({'msg_id':str(message.id)},{"$set":{"blacklist":new_blacklist}})
+        await ctx.send(f"Succefully removed{reply1} from Blacklist!")
+        
+                
+        
+        
+        
+        
         
     @reactrole.command(name="remove",aliases=["-"])
     async def remove_reactrole(self,ctx,message:discord.Message,emoji:Emoji,role:discord.Role):
