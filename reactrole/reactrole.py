@@ -24,7 +24,7 @@ class ReactionRole(commands.Cog):
 
     @reactrole.command(name="list")
     async def list_rr(self,ctx,message:discord.Message):
-        cursor = await self.db.find({"msg_id":str(message.id)})
+        cursor =  self.db.find({"msg_id":str(message.id)})
         role_list = []
         emoji_list = []
         async for doc in cursor:
