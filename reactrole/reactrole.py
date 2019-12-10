@@ -24,12 +24,12 @@ class ReactionRole(commands.Cog):
 
     @reactrole.command(name="lock")
     async def lock_rr(self,ctx,message:discord.Message):
-        self.db.update_many({'msg_id':str(message.id},{"$set":{"locked":True}}))
+        self.db.update_many({'msg_id':str(message.id)},{"$set":{"locked":True}}))
         await ctx.send(f"Successfully locked react role on that message")
     
     @reactrole.command(name="unlock")
     async def unlock_rr(self,ctx,message:discord.Message):
-        self.db.update_many({'msg_id':str(message.id},{"$set":{"locked":False}}))
+        self.db.update_many({'msg_id':str(message.id)},{"$set":{"locked":False}}))
         await ctx.send(f"Successfully unlocked react role on that message")
         
         
