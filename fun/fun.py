@@ -141,7 +141,7 @@ class Fun(Cog):
         else:
             await ctx.send(f"{bot_choice.value} We're square {author.mention}!")
             
-   @commands.command(name="8ball",aliases=["8"])
+    @commands.command(name="8ball",aliases=["8"])
     async def _8ball(self, ctx, *, question: str):
         """Ask 8 ball a question.
         Question must end with a question mark.
