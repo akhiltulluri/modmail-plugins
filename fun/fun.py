@@ -17,7 +17,6 @@ logger = logging.getLogger("Modmail")
 
 def escape(text: str, *, mass_mentions: bool = False, formatting: bool = False) -> str:
     """Get text with all mass mentions or markdown escaped.
-
     Parameters
     ----------
     text : str
@@ -26,12 +25,10 @@ def escape(text: str, *, mass_mentions: bool = False, formatting: bool = False) 
         Set to :code:`True` to escape mass mentions in the text.
     formatting : `bool`, optional
         Set to :code:`True` to escpae any markdown formatting in the text.
-
     Returns
     -------
     str
         The escaped text.
-
     """
     if mass_mentions:
         text = text.replace("@everyone", "@\u200beveryone")
@@ -89,7 +86,6 @@ class Fun(Cog):
     @commands.command()
     async def choose(self, ctx, *choices):
         """Choose between multiple options.
-
         To denote options which include whitespace, you should use
         double quotes.
         """
@@ -102,9 +98,7 @@ class Fun(Cog):
     @commands.command()
     async def roll(self, ctx, number: int = 6):
         """Roll a random number.
-
         The result will be between 1 and `<number>`.
-
         `<number>` defaults to 6.
         """
         author = ctx.author
@@ -146,14 +140,17 @@ class Fun(Cog):
             await ctx.send(f"{bot_choice.value} You lose {author.mention}!")
         else:
             await ctx.send(f"{bot_choice.value} We're square {author.mention}!")
+            
     @commands.command(name="8ball",aliases=["8"])
     async def _8ball(self, ctx, *, question: str):
         """Ask 8 ball a question.
-
         Question must end with a question mark.
         """
+        embed = discord.Embed(title='Question: | :8ball:', description=question, color=0x2332e4)
+        embed.add_field(name='Answer:', value=choice(self.ball), inline=False)
+        
         if question.endswith("?") and question != "?":
-            await ctx.send((choice(self.ball)))
+            await ctx.send(embed=embed)
         else:
             await ctx.send("That doesn't look like a question.")
 
