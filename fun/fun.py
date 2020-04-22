@@ -146,7 +146,7 @@ class Fun(Cog):
         Question must end with a question mark.
         """
         embed = discord.Embed(title='Question: | :8ball:', description=question, color=0x2332e4)
-        embed.add_field(name='Answer:', value=choice()(self.ball), inline=False)
+        embed.add_field(name='Answer:', value=choice(self.ball), inline=False)
         
         if question.endswith("?") and question != "?":
             await ctx.send(embed=embed)
