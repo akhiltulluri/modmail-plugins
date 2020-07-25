@@ -167,7 +167,8 @@ class Fun(Cog):
             search_terms.replace("+", "%2B").replace(" ", "+"), mass_mentions=True
         )
         await ctx.send("<https://lmgtfy.com/?q={}>".format(search_terms))
-        
+    
+@commands.command(aliases=["echo" "repeatafterme"])    
     @commands.command()
     async def say(self,ctx,* ,message):
         """Make the bot say something"""
