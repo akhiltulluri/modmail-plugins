@@ -79,7 +79,7 @@ class AutoPublish(commands.Cog):
             if channels:
                 msg = ""
                 for channel in channels:
-                    msg += f"{channel.mention}\n"
+                    msg += f"<#{channel}>\n"
                 embed = discord.Embed(
                     title="Tracking channels",
                     description=msg,
