@@ -95,6 +95,7 @@ class AutoPublish(commands.Cog):
                 "Not tracking any announcement channels in this server!"
             )
 
+    @commands.Cog.listener()
     async def on_message(self, message):
         if not message.channel.is_news():
             return  # Not an announcements channel
