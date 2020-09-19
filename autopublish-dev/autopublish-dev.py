@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands,tasks
 
 from core import checks
 from core.models import PermissionLevel
@@ -10,7 +10,8 @@ class AutoPublish(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.coll = await bot.api.get_plugin_client(self)
+        self.set_coll.start()
+        
 
     # Credit to codeinteger6 for this command's code
     @commands.command()
@@ -103,6 +104,14 @@ class AutoPublish(commands.Cog):
         if not message.channel.id in channels:
             return  # Not tracking
         await message.publish()
+
+    @tasks.loop(count=1)
+    async def set_coll(self):
+        self.coll = await self.bot.api.get_plugin_client(self)
+
+    @set_coll.before_loop()
+    async def before_set_coll(self):
+        await self.bot.wait_until_ready()
 
 
 def setup(bot):
