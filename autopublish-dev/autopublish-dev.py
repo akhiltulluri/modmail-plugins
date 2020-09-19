@@ -10,7 +10,7 @@ class AutoPublish(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.coll = bot.api.get_plugin_client(self)
+        self.coll = await bot.api.get_plugin_client(self)
 
     # Credit to codeinteger6 for this command's code
     @commands.command()
