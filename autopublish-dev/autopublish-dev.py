@@ -109,7 +109,7 @@ class AutoPublish(commands.Cog):
     async def set_coll(self):
         self.coll = await self.bot.api.get_plugin_client(self)
 
-    @set_coll.before_loop()
+    @set_coll.before_loop
     async def before_set_coll(self):
         await self.bot.wait_until_ready()
 
