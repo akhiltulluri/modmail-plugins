@@ -118,7 +118,7 @@ class NitroBoost(commands.Cog):
                 textchannel = guild.get_channel(channel) # Get channel object 
                 if textchannel: # If channel exists
                     message = apply_vars(message,booster)
-                    embed = discord.Embed(description=message)
+                    embed = discord.Embed(description=message,color=discord.Color.blue())
                     embed.set_author(name="🎉🎉 BOOSTER PARTY 🎉🎉",icon_url="https://media.discordapp.net/attachments/511385199612002304/757139558419923016/nitro.gif")
                     embed.set_thumbnail(url=booster.avatar_url)
                     footText= f"Server Boosted 🎉({booster.id})"
