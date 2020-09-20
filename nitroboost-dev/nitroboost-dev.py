@@ -101,7 +101,7 @@ class NitroBoost(commands.Cog):
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
         if before.premium_since is None and after.premium_since is not None:
-            await on_nitro_boost(after)
+            await self.on_nitro_boost(after)
 
     async def on_nitro_boost(self,booster):
         doc = await self.coll.get(str(booster.guild.id))
