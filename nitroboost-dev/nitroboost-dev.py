@@ -21,7 +21,7 @@ class SafeString(str):
             return SafeString('%s.%s}' % (self[:-1], name))
 
 
-def apply_vars(self, message, member):
+def apply_vars(message, member):
     return string.Formatter().vformat(message, [], SafeFormat(
         booster=member
     ))
@@ -74,7 +74,6 @@ class NitroBoost(commands.Cog):
         if doc:
             status = doc["on"]
             message = doc["message"]
-        message = "on" if status else "off"
         await self.coll.set(str(ctx.guild.id),{"on": status,"channel": channel.id,"message": message})
         await ctx.send(f"Successfully set boost announcements to <#{channel.id}>! Use `boosttoggle` command to turn these on/off!")
 
