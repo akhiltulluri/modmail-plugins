@@ -48,7 +48,7 @@ class NitroBoost(commands.Cog):
             message = doc["message"]
         toSetStatus = not status
         message = "on" if toSetStatus else "off"
-        self.coll.set(str(ctx.guild.id),{"on": toSetStatus,"channel": channel,"message": message})
+        await self.coll.set(str(ctx.guild.id),{"on": toSetStatus,"channel": channel,"message": message})
         await ctx.send(f"Successfully turned {message} custom nitro boost announcements for this server!")
 
     @commands.command()
@@ -61,7 +61,7 @@ class NitroBoost(commands.Cog):
         if doc:
             status = doc["on"]
             channel = doc["channel"]
-        self.coll.set(str(ctx.guild.id),{"on": status,"channel": channel, "message": message})
+        await self.coll.set(str(ctx.guild.id),{"on": status,"channel": channel, "message": message})
         await ctx.send(f"Successfully set {message} as custom nitro boost announcements message for this server!")
 
     @commands.command()
@@ -75,7 +75,7 @@ class NitroBoost(commands.Cog):
             status = doc["on"]
             message = doc["message"]
         message = "on" if status else "off"
-        self.coll.set(str(ctx.guild.id),{"on": status,"channel": channel.id,"message": message})
+        await self.coll.set(str(ctx.guild.id),{"on": status,"channel": channel.id,"message": message})
         await ctx.send(f"Successfully set boost announcements to <#{channel.id}>! Use `boosttoggle` command to turn these on/off!")
 
 
