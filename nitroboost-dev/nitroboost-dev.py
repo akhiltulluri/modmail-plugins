@@ -81,7 +81,7 @@ class NitroBoost(commands.Cog):
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
-    async def boostconfig(self, ctx, channel: discord.TextChannel):
+    async def boostconfig(self, ctx):
         """Get server configuration for boost announcements"""
         doc = await self.coll.get(str(ctx.guild.id))
         message = "{booster.mention} has just boosted the server!"
@@ -97,6 +97,7 @@ class NitroBoost(commands.Cog):
         embed.add_field(name="Toggle",value=statusMsg,inline=False)
         embed.add_field(name="Channel",value=channelMsg,inline=False)
         embed.add_field(name="Message",value=message)
+        await ctx.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
