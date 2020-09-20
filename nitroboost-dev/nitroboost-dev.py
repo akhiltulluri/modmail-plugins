@@ -111,7 +111,7 @@ class NitroBoost(commands.Cog):
         channel = None
         if doc:
             channel = doc["channel"]
-            status = doc["status"]
+            status = doc["on"]
             message = doc["message"]
         if status: # Toggled announcements
             if channel: # If channel is configured
