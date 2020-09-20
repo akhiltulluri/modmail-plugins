@@ -89,7 +89,7 @@ class NitroBoost(commands.Cog):
         channel = None
         if doc:
             channel = doc["channel"]
-            status = doc["status"]
+            status = doc["on"]
             message = doc["message"]
         statusMsg = "On" if status else "Off"
         channelMsg = f"<#{channel}>" if channel else None
