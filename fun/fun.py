@@ -176,7 +176,7 @@ class Fun(Cog):
     
     @commands.command()
     async def sayd(self,ctx,* ,message):
-        """Same as say command, except it deletes your message.."""
+        """Same as say command, except it deletes your message."""
         msg = escape(message,mass_mentions=True)
         try:
             await ctx.message.delete()
