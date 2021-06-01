@@ -173,6 +173,17 @@ class Fun(Cog):
         """Make the bot say something"""
         msg = escape(message,mass_mentions=True)
         await ctx.send(msg)
+    
+    @commands.command()
+    async def sayd(self,ctx,* ,message):
+        """Same as say command, except it deletes your message."""
+        msg = escape(message,mass_mentions=True)
+        try:
+            await ctx.message.delete()
+        except discord.errors.Forbidden:
+            await ctx.send("Not enough permissions to delete messages.", delete_after=2)
+        await ctx.send(msg)
+        
     @commands.command()
     async def reverse(self, ctx, *, text):
         """!txeT ruoY esreveR"""
